@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+        <link href="./css/window.css" rel="stylesheet" type="text/css">
+        <link rel="Shortcut Icon" href="./img/Temmie.gif" type="image/x-icon">
+        <script src="./js/database.js"></script>
+        <script src="./js/lenovoRelease.js"></script>
+        <script src="./js/props.js"></script>
+        <script src="./js/window.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="bg"></div>
+        <div id="bg-cover"></div>
+        <!--时间显示-->
+        <div id="timer-display" class="no-selection">
+            <div id="timer">
+                <div>
+                    <span>{{ hours }}</span>
+                    <span class="timer-display-colon">:</span>
+                    <span>{{ minutes }}</span><!--
+                    <span v-if="statue=='count'" class="timer-display-colon">:</span>
+                    <span v-if="statue=='count'">{{ seconds }}</span>-->
+                </div>
+            </div>
+        </div>
+        <!--搜索-->
+        <div id="searchor-group-position">
+            <input type="button" value="" id="searchor-selector" class="searchor-button">
+            <input type="text" placeholder="Search" id="searchor-input" autocomplete="off" required="false" v-model="text" @keyup="onkeyup()" @keydown="onkeydown()">
+            <input type="button" value="" id="searchor-search" class="searchor-button">
+        </div>
+        <!--清除线-->
+        <div id="clean-line-vue" @click="clean">
+            <transition name="clean-line-transition">
+                <div id="clean-line-body" v-if="show">
+                    <i id="clean-line"></i>
+                </div>
+            </transition>
+        </div>
+        <!--搜索联想-->
+        <div id="searchor-lenovo">
+            <transition name="searchor-lenovo-body-transition">
+                <div id="searchor-lenovo-body" v-if="lastRecord != '' || lenovos.length != 0">
+                    <transition name="searchor-lenovo-toppart-transition">
+                        <div id="searchor-last-record" class="searchor-lenovo-monomer no-selection" v-if="lastRecord != ''" @click="lastRecord_onclick();">
+                            <span class="searchor-toppart-pre">[曾输入] </span>
+                            <span class="searchor-toppart-pro">{{ lastRecord }}</span>
+                        </div>
+                    </transition>
+                    <transition name="searchor-lenovo-toppart-transition">
+                        <div id="searchor-command" class="searchor-lenovo-monomer no-selection" v-if="commandInquire != ''" @click="command_onclick();">
+                            <span class="searchor-toppart-pre">[执行] </span>
+                            <span class="searchor-toppart-pro">{{ commandInquire }}</span>
+                        </div>
+                    </transition>
+                    <transition-group name="searchor-lenovo-transition" tag="div">
+                        <div class="no-selection" v-for="single in lenovos" v-bind:title="single.text" v-bind:key="single" @click="searchorLenovoEntry_click(single.text);">
+                            <div class="searchor-lenovo-monomer searchor-lenovo-selected" v-if="single.selected">
+                                {{ single.text }}
+                            </div>
+                            <div v-else class="searchor-lenovo-monomer">
+                                {{ single.text }}
+                            </div>
+                        </div>
+                    </transition-group>
+                </div>
+            </transition>
+        </div>
+        <!--选择搜索器窗口-->
+        <div id="searchor-selection" v-if="onDisplay == true" @click="searchorSelection_onclick();" class="no-selection">
+            <div id="searchor-selection-title">
+                选择搜索器
+            </div>
+            <div id="searchor-selection-list">
+                <div v-for="(searchor, index) in searchorList" class="searchor-monomer" v-bind:style='"background-image: url("+ getSearchorFavionUrl(index) +")"' v-bind:title="searchor.name" @click="selectSearchor(index);"></div>
+            </div>
+        </div>
+        <!--底部快捷链接-->
+        <footer>
+            <div id="favourite" class="no-selection">
+                <div id="favourite-list">
+                    <div v-for="(favourite, index) in favouriteList" class="favourite-monomer" v-bind:style='"background-image: url(" + getFavouriteFavionUrl(index) + ")"' v-bind:title="favourite.name" @click="favouriteMonomer_onclick(index);"></div>
+                </div>
+            </div>
+        </footer>
+        <!--容纳所有的窗口-->
+        <div id="window-avoider" style="display: none">
+            <div id="window-manager" v-if="onShow != null">
+                <!--id格式："[windowName]-window"-->
+                <div id="timer-window" v-if="onShow == windows.timer.windowName" class="window-body no-selection" v-bind:style="windowStyle">
+                    <div class="window-titlebar">
+                        <div class="window-titlebar-button-container">
+                            <!--buttons-->
+                        </div>
+                        <div class="window-title">
+                            {{ windows.timer.titleBar.title }}
+                        </div>
+                    </div>
+                    <div class="window-content"><!--
+                        <div id="timer-timeset-body">
+                            <div id="timer-timeset">
+
+                            </div>
+                        </div>
+                        <input id="timer-taskinput" value="" placeholder="任务名称" type="text" autocomplete="off" required="true" v-model="windows.timer.taskName" @keyup="">
+                        <div id="timer-control">
+                            <div id="timer-run"></div>
+                            <div id="timer-statue"></div>
+                        </div>-->
+                        <iframe v-bind:src="windows.timer.iframeSrc" id="timer-dino">
+
+                        </iframe><!---->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

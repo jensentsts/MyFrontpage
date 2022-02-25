@@ -1,0 +1,409 @@
+body{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 200px;
+    z-index: 999;
+    overflow: hidden;
+    outline: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+::selection{
+    background: #6cf;
+    color: white;
+}
+
+::-webkit-scrollbar{
+    height: 100%;
+    width: 8px;
+    margin-right: 2px;
+}
+::-webkit-scrollbar-thumb{
+    background: rgb(74, 90, 105);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: rgb(90, 110, 130);
+}
+::-webkit-scrollbar-track{
+    background: none;
+}
+
+#bg, #bg-cover{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color:  rgb(163, 175, 188);
+    background-position: center;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    transition: background-color .26s;
+    width: 100vw;
+    z-index: -2;
+}
+#bg-cover{
+    background: radial-gradient(rgba(0, 0, 0, 0), rgba(4, 4, 4, 0.6));
+    z-index: -1;
+}
+
+#timer-display{
+    position: fixed;
+   /* left: calc(50vw - 40px);*/
+    left: 0px;
+    width: 100%;
+    color: white;
+    font-size: 35px;
+    font-weight: lighter;
+    top: 124px;
+    display: flex;
+    justify-content: center;
+    /*cursor: pointer;*/
+}
+
+#searchor-group-position{
+    align-items: center;
+    top: 190px;
+    left: calc(50% - 330px);
+    position: relative;
+    display: flex;
+    width: 660px;
+    z-index: 1;
+}
+
+#searchor-input{
+    border-radius: 24px;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0px 0px 3px rgb(163, 175, 188);
+    color: white;
+    height: 44px;
+    outline: medium;
+    text-align: center;
+    width: 560px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all .26s;
+}
+#searchor-input::placeholder{
+    color: white;
+}
+/*#searchor-input:valid, #searchor-input:focus{text-align: left;}*/
+#searchor-input:hover{
+    color: black;
+    background-color: white;
+    box-shadow: 0px 0px 0px grey;
+}
+#searchor-input:hover::placeholder{
+    color: grey;
+}
+#searchor-input:valid{
+    background: white;
+    box-shadow: 0px 0px 0px grey;
+    color: black;
+}
+#searchor-input:focus{
+    background-color: white;
+    box-shadow: 0px 0px 0px grey;
+    color: black;
+}
+#searchor-input:focus::placeholder{
+    color: white;
+}
+
+#searchor-button{
+    background-color: rgb(190, 146, 122);
+    border-radius: 50%;
+    border: none;
+    outline: medium;
+    color: white;
+}
+
+#searchor-selector{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    left: +40px;
+    transition: background-size .4s;
+    z-index: 6;
+}
+#searchor-selector:hover{
+    /*background-size: 95%;*/
+    background-size: 90%;
+}
+
+#searchor-search{
+    left: -40px;
+    background-color: rgba(255, 255, 255, .4);
+    background-image: url(../img/searchor.png);
+    background-size: 37%;
+    backdrop-filter: blur(2px);
+    transition: background-color .26s;
+}
+#searchor-search:hover{
+    background-color: white;
+}
+
+#clean-line-body{
+    align-items: center;
+    display: flex;
+    height: 14px;
+    justify-content: center;
+    top: 246px;
+    position: fixed;
+    left: calc(50% - 278px);
+    width: 556px;
+    cursor: pointer;
+}
+
+#clean-line{
+    height: 2px;
+    background-color: white;
+    width: 100%;
+}
+
+#searchor-lenovo{
+    border-radius: 18px;
+    display: block;
+    top: 264px;
+    position: fixed;
+    left: calc(50% - 282px);
+    width: 564px;
+    overflow-y: auto;
+}
+
+#searchor-lenovo-body{
+    background: white;
+}
+
+#searchor-last-record, #searchor-command{
+    background: aliceblue;
+    transition: all .26s;
+}
+#searchor-last-record:hover, #searchor-command:hover{
+    background: rgb(219, 234, 247);
+}
+
+#searchor-selection{
+    /*box-shadow: 0px 0px 4px rgb(90, 110, 130);*/
+    z-index: 99;
+    position: fixed;
+    top: 244px;
+    left: calc(50% - 388px);
+    width: 256px;
+    height: 180px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px #bdbdbd;
+    background-color: rgb(245, 245, 245);
+    overflow: hidden;
+}
+
+#searchor-selection-title{
+    background-color: #ededef;
+    font-size: 16px;
+    text-align: center;
+    text-rendering: optimizeSpeed;
+    letter-spacing: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    animation: searchor-selection-title-rotate 1.6s infinite ease-out;
+}
+@keyframes searchor-selection-title-rotate{
+    from{
+        transform: rotateX(0deg)
+    }
+    to{
+        transform: rotateX(360deg);
+    }
+}
+
+#searchor-selection-list{
+    overflow-y: auto;
+    width: 100%;
+    height: calc(180px - 36px);
+}
+
+#searchor-selection-for{
+    display: block;
+}
+
+#favourite{
+    position: absolute;
+    /*bottom: -100px;*/
+    bottom: 16px;
+    /*width: 1080px;*/
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 100px;
+    word-wrap: normal;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    /*border-top-left-radius: 30px; border-top-right-radius: 30px;*/
+    border-radius: 50px;
+    transition: all .26s ease-in-out;
+    box-shadow: 0px 0px 8px #424242;
+    overflow: hidden;
+}
+
+/*footer:hover #favourites-body{bottom: 16px;}*/
+
+#favourite-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-display-colon{
+    color: #eeff41;
+    animation: time-display-colon-flash .8s infinite alternate-reverse linear;
+}
+@keyframes time-display-colon-flash{
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 0%;
+    }
+}
+
+.searchor-button{
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    outline: medium;
+    position: relative;
+    width: 40px;
+}
+
+.no-selection{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.searchor-monomer, .favourite-monomer{
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+    cursor: pointer;
+    display: inline-flex;
+    transform: scale(1);
+    transition: box-shadow .26s, transform .26s, background-size .36s;
+    box-shadow:  0px 0px 0px #333;
+}
+.searchor-monomer{
+    border-radius: 12px;
+    height: 42px;
+    width: 42px;
+    margin: 10px;
+}
+.searchor-monomer:hover, .favourite-monomer:hover{
+    transform: scale(1.12);
+    /*background-size: 90%;*/
+}
+.searchor-monomer:hover{
+    box-shadow: 0px 0px 5px #333;
+}
+
+.searchor-monomer-title{
+    display: none;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.clean-line-transition-enter-active, .clean-line-transition-leave-active{
+    transition: all .26s;
+}
+.clean-line-transition-enter, .clean-line-transition-leave-to{
+    opacity: 0%;
+}
+.clean-line-transition-enter-to, .clean-line-transition-leave{
+    opacity: 100%;
+}
+
+.searchor-lenovo-body-transition-enter-active, .searchor-lenovo-body-transition-leav-active{
+    transition: all .26s;
+}
+.searchor-lenovo-body-transition-enter-to, .searchor-lenovo-body-transition-leave{
+    opacity: 100%;
+}
+.searchor-lenovo-body-transition-enter, .searchor-lenovo-body-transition-leave-to{
+    opacity: 0%;
+}
+
+.searchor-toppart-pre{
+    color: #999;
+}
+
+.searchor-lenovo-monomer{
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all .16s ease-out;
+}
+.searchor-lenovo-monomer:hover, .searchor-lenovo-selected{
+    background: #DDD;
+}
+
+.searchor-lenovo-toppart-transition-enter-active, .searchor-lenovo-toppart-transition-leave-active{
+    transition: all .26s;
+}
+.searchor-lenovo-toppart-transition-enter-to, .searchor-lenovo-toppart-transition-leave{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 24px;
+}
+.searchor-lenovo-toppart-transition-enter, .searchor-lenovo-toppart-transition-leave-to{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 0px;
+}
+
+.searchor-lenovo-transition-enter-active, .searchor-lenovo-transition-leave-active{
+    transition: all .26s;
+}
+.searchor-lenovo-transition-enter-to, .searchor-lenovo-transition-leave{
+    opacity: 100%;
+}
+.searchor-lenovo-transition-enter, .searchor-lenovo-transition-leave-to{
+    opacity: 0;
+}
+
+.favourite-monomer{
+    border-radius: 20px;
+    height: 72px;
+    width: 72px;
+    margin: 16px;
+    background-color: rgb(245, 245, 245);
+}
+
+.favourite-monomer:hover{
+    box-shadow: 0px 0px 8px #333;
+}
